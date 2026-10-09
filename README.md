@@ -1,5 +1,4 @@
 # Ai-whatsapp-sales-automation
-Write a professional README.md for a GitHub repository showing an automation project I built, aimed at recruiters and hiring managers for AI engineering and data/digital engineering roles.
 
 PROJECT DETAILS
 - Name: WhatsApp Sales Tracker
