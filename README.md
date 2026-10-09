@@ -35,10 +35,17 @@ https://www.loom.com/share/b7749f8972ec4a74ab7ca99919e22998
 https://manager-dashboard-orcin.vercel.app/
 
 Prompt skeleton:
+
 [Order Ref]
+
 [Full Address]
+
 [Customer Name]
+
 [Phone]
+
 [Speed]mbps
+
 price [Price]
+
 DOI [DD/MM/YYYY] [am/pm]
