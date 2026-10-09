@@ -1,0 +1,298 @@
+{
+    "name": "WhatsApp sales (Skeleton) ",
+    "flow": [
+        {
+            "id": 1,
+            "module": "gateway:CustomWebHook",
+            "version": 1,
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0,
+                    "messages": [
+                        {
+                            "category": "setup",
+                            "severity": "error",
+                            "message": "Webhook: Value must not be empty."
+                        }
+                    ]
+                },
+                "setupValidation": {
+                    "version": 1,
+                    "configuration": "8337e771c3f18635",
+                    "result": {
+                        "valid": false,
+                        "fields": [
+                            {
+                                "domain": "parameters",
+                                "path": "hook",
+                                "label": "Webhook",
+                                "errors": [
+                                    {
+                                        "message": "Value must not be empty.",
+                                        "code": "validate-bundle-param-required"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "id": 2,
+            "module": "groq:createJSONChatCompletion",
+            "version": 1,
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0,
+                    "messages": [
+                        {
+                            "category": "setup",
+                            "severity": "error",
+                            "message": "Connection: Value must not be empty."
+                        },
+                        {
+                            "category": "setup",
+                            "severity": "error",
+                            "message": "Model: Value must not be empty."
+                        },
+                        {
+                            "category": "setup",
+                            "severity": "error",
+                            "message": "User Message: Value must not be empty."
+                        }
+                    ]
+                },
+                "setupValidation": {
+                    "version": 1,
+                    "configuration": "e280b685ec9aadde",
+                    "result": {
+                        "valid": false,
+                        "fields": [
+                            {
+                                "domain": "parameters",
+                                "path": "__IMTCONN__",
+                                "label": "Connection",
+                                "errors": [
+                                    {
+                                        "message": "Value must not be empty.",
+                                        "code": "validate-bundle-param-required"
+                                    }
+                                ]
+                            },
+                            {
+                                "domain": "expect",
+                                "path": "model",
+                                "label": "Model",
+                                "errors": [
+                                    {
+                                        "message": "Value must not be empty.",
+                                        "code": "validate-bundle-param-required"
+                                    }
+                                ]
+                            },
+                            {
+                                "domain": "expect",
+                                "path": "userMessage",
+                                "label": "User Message",
+                                "errors": [
+                                    {
+                                        "message": "Value must not be empty.",
+                                        "code": "validate-bundle-param-required"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "id": 3,
+            "module": "json:ParseJSON",
+            "version": 1,
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0,
+                    "messages": [
+                        {
+                            "category": "setup",
+                            "severity": "error",
+                            "message": "JSON string: Value must not be empty."
+                        }
+                    ]
+                },
+                "setupValidation": {
+                    "version": 1,
+                    "configuration": "ea04953dd9c5c52",
+                    "result": {
+                        "valid": false,
+                        "fields": [
+                            {
+                                "domain": "expect",
+                                "path": "json",
+                                "label": "JSON string",
+                                "errors": [
+                                    {
+                                        "message": "Value must not be empty.",
+                                        "code": "validate-bundle-param-required"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "id": 4,
+            "module": "builtin:BasicRouter",
+            "version": 1,
+            "mapper": null,
+            "metadata": {
+                "designer": {
+                    "x": 900,
+                    "y": 0
+                }
+            },
+            "routes": [
+                {
+                    "flow": [
+                        {
+                            "id": 5,
+                            "module": "google-sheets:addRow",
+                            "version": 2,
+                            "metadata": {
+                                "designer": {
+                                    "x": 1200,
+                                    "y": -300,
+                                    "messages": [
+                                        {
+                                            "category": "setupreq",
+                                            "severity": "error",
+                                            "message": "This module doesn't have a connection. Create a connection in the module settings to continue."
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "id": 8,
+                            "module": "supabase:createARow",
+                            "version": 1,
+                            "metadata": {
+                                "designer": {
+                                    "x": 1500,
+                                    "y": -300,
+                                    "messages": [
+                                        {
+                                            "category": "setup",
+                                            "severity": "error",
+                                            "message": "Connection: Value must not be empty."
+                                        },
+                                        {
+                                            "category": "setup",
+                                            "severity": "error",
+                                            "message": "Table: Value must not be empty."
+                                        }
+                                    ]
+                                },
+                                "setupValidation": {
+                                    "version": 1,
+                                    "configuration": "184f22c299fe6206",
+                                    "result": {
+                                        "valid": false,
+                                        "fields": [
+                                            {
+                                                "domain": "parameters",
+                                                "path": "__IMTCONN__",
+                                                "label": "Connection",
+                                                "errors": [
+                                                    {
+                                                        "message": "Value must not be empty.",
+                                                        "code": "validate-bundle-param-required"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "domain": "expect",
+                                                "path": "table",
+                                                "label": "Table",
+                                                "errors": [
+                                                    {
+                                                        "message": "Value must not be empty.",
+                                                        "code": "validate-bundle-param-required"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 6,
+                            "module": "google-sheets:addRow",
+                            "version": 2,
+                            "metadata": {
+                                "designer": {
+                                    "x": 1200,
+                                    "y": 0,
+                                    "messages": [
+                                        {
+                                            "category": "setupreq",
+                                            "severity": "error",
+                                            "message": "This module doesn't have a connection. Create a connection in the module settings to continue."
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 7,
+                            "module": "placeholder:Placeholder",
+                            "metadata": {
+                                "designer": {
+                                    "x": 1200,
+                                    "y": 300
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu1.make.com",
+        "notes": []
+    }
+}
